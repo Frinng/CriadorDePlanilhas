@@ -20,7 +20,6 @@ public class Complementar
     public static int Bancadas = 1;
     public static List<Pessoa> Pessoas = new List<Pessoa>();
     public static string NomePLanilha;
-    public static int Contador = 0;
 
     public static void NomedaPlanilha() {
 
@@ -77,8 +76,6 @@ public class Complementar
         
             Console.WriteLine("Digite uma cidade: ");
             Pessoane.Cidade = Console.ReadLine();
-
-            Contador++;
             
             Pessoas.Add(Pessoane);
             
