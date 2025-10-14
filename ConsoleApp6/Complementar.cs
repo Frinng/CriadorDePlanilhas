@@ -14,9 +14,9 @@ public class Pessoa {
     public static void pessoa(){}
     
 }
-
 public class Complementar {
-
+    
+    public static string CaminhoCOmpleto;
     public static int Itens = 0;
     public static List<Pessoa> Pessoas = new List<Pessoa>();
     public static string NomePLanilha;
@@ -102,7 +102,7 @@ public class Complementar {
         
         string CaminhoDaPlanilhakkkslkem = "C:\\Users\\Pedro\\Documents\\My Games\\TesteInterdace";
 
-        string CaminhoCOmpleto = Path.Combine(CaminhoDaPlanilhakkkslkem, NomePLanilha + ".xlsx");
+        CaminhoCOmpleto = Path.Combine(CaminhoDaPlanilhakkkslkem, NomePLanilha + ".xlsx");
         
         using (var LivroDeTrabalho = new XLWorkbook()) {
 
