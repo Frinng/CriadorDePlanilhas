@@ -1,4 +1,4 @@
-﻿using System.Runtime;
+﻿﻿using System.Runtime;
 
 namespace ConsoleApp6;
 using ClosedXML.Excel;
@@ -52,10 +52,10 @@ public class Complementar
     }
     
     public static void CadastroParaAPlanilha(){
-        Pessoa Pessoane = new Pessoa();
         int n1;
 
         for (int i = 0; i <= 1; i++) {
+            Pessoa Pessoane = new Pessoa();
             Console.WriteLine("--------------------------------------------");
             
             Console.WriteLine("Digite um nome: ");
@@ -73,8 +73,8 @@ public class Complementar
                 FuncoesUteis.DIGITEUMNUMEROINTEIRO();
             
             }
-        
-            Console.WriteLine("Digite uma cidade: ");
+            
+            Console.WriteLine($"Digite o nome da cidade em que o {Pessoane.Nome} vive: ");
             Pessoane.Cidade = Console.ReadLine();
             
             Pessoas.Add(Pessoane);
@@ -92,18 +92,18 @@ public class Complementar
         using (var LivroDeTrabalho = new XLWorkbook()) {
 
             var Planilha = LivroDeTrabalho.Worksheets.Add(NomePLanilha);
-            
-            Planilha.Cell(2, 1).Value = "Nome";
-            Planilha.Cell(3, 1).Value = "Idade";
-            Planilha.Cell(4, 1).Value = "Cidade";
 
+
+            Planilha.Cell(1, 1).Value = "Nome";
+            Planilha.Cell(1, 2).Value = "Idade";
+            Planilha.Cell(1, 3).Value = "Cidade";
             
-            for (int j = 0; j < Bancadas; j++) {
-                Planilha.Cell(1, j + 1).Value = $"Bancada {j + 1}";
-            }
-            
-            for (int j = 0; j < Pessoas.Count && j < Bancadas; j++) {
-                Planilha.Cell(2, j + 1).Value = Pessoas[j].Nome;
+            for (int j = 0; j < Pessoas.Count && j < Pessoas.Count; j++) {
+                
+                Planilha.Cell(2 + j, 1).Value = Pessoas[j].Nome;
+                Planilha.Cell(2 + j, 2).Value = Pessoas[j].Idade;
+                Planilha.Cell(2 + j, 3).Value = Pessoas[j].Cidade;
+                
             }
             
             LivroDeTrabalho.SaveAs(CaminhoCOmpleto);
