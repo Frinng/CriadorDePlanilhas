@@ -6,18 +6,16 @@ using System.Collections.Generic;
 
 public class Pessoa {
     
-    public string Nome { get; set; }
-    public int Idade { get; set; }
-    public string Cidade { get; set; }
+    public string Descricao { get; set; }
+    public int Quantidade { get; set; }
     
     public static void pessoa(){}
     
 }
 
-public class Complementar
-{
+public class Complementar {
 
-    public static int Bancadas = 1;
+    public static int Itens = 0;
     public static List<Pessoa> Pessoas = new List<Pessoa>();
     public static string NomePLanilha;
 
@@ -35,14 +33,16 @@ public class Complementar
     }
     
     public static void NumeroBancadas() {
-        string BancadasString;
+        string ItensString;
         int n1;
         
-        Console.WriteLine("Digite Quantas Bancadas vc quer adicionar: ");
-        BancadasString = Console.ReadLine();
+        Console.WriteLine("Digite Quantos itens voce deseja adicionar: ");
+        ItensString = Console.ReadLine();
 
-        if (int.TryParse(BancadasString, out n1)) {
-            Bancadas = n1;
+        if (int.TryParse(ItensString, out n1)) {
+            
+            Itens = n1;
+            
         }
         else {
             
@@ -54,19 +54,19 @@ public class Complementar
     public static void CadastroParaAPlanilha(){
         int n1;
 
-        for (int i = 0; i <= 1; i++) {
+        for (int i = 0; i < Itens; i++) {
             Pessoa Pessoane = new Pessoa();
             Console.WriteLine("--------------------------------------------");
             
-            Console.WriteLine("Digite um nome: ");
-            Pessoane.Nome = Console.ReadLine();
+            Console.WriteLine("Digite o nome do item: ");
+            Pessoane.Descricao = Console.ReadLine();
         
-            Console.WriteLine($"Digite a idade do {Pessoane.Nome}");
-            string IdadeDigito = Console.ReadLine();
+            Console.WriteLine($"Digite a quantidade de {Pessoane.Descricao}");
+            string QuantidadeDigito = Console.ReadLine();
 
-            if (int.TryParse(IdadeDigito,out n1)) {
+            if (int.TryParse(QuantidadeDigito,out n1)) {
 
-                Pessoane.Idade = n1;
+                Pessoane.Quantidade = n1;
 
             }else {
           
@@ -74,16 +74,16 @@ public class Complementar
             
             }
             
-            Console.WriteLine($"Digite o nome da cidade em que o {Pessoane.Nome} vive: ");
-            Pessoane.Cidade = Console.ReadLine();
-            
             Pessoas.Add(Pessoane);
             
             Console.WriteLine("  ");
         }
     }
 
-    public static void CadastroPlanilha() {
+    public static void CadastroPlanilha()
+    {
+
+        int Contador = 0;
         
         string CaminhoDaPlanilhakkkslkem = "C:\\Users\\Pedro\\Documents\\My Games\\TesteInterdace";
 
@@ -94,15 +94,18 @@ public class Complementar
             var Planilha = LivroDeTrabalho.Worksheets.Add(NomePLanilha);
 
 
-            Planilha.Cell(1, 1).Value = "Nome";
-            Planilha.Cell(1, 2).Value = "Idade";
-            Planilha.Cell(1, 3).Value = "Cidade";
+            Planilha.Cell(1, 1).Value = "Item";
+            Planilha.Cell(1, 2).Value = "Descrição";
+            Planilha.Cell(1, 3).Value = "Quantidade";
             
             for (int j = 0; j < Pessoas.Count && j < Pessoas.Count; j++) {
+
+                Contador++;
                 
-                Planilha.Cell(2 + j, 1).Value = Pessoas[j].Nome;
-                Planilha.Cell(2 + j, 2).Value = Pessoas[j].Idade;
-                Planilha.Cell(2 + j, 3).Value = Pessoas[j].Cidade;
+                Planilha.Cell(2 + j, 1).Value = Contador;
+                Planilha.Cell(2 + j, 2).Value = Pessoas[j].Descricao;
+                Planilha.Cell(2 + j, 3).Value = Pessoas[j].Quantidade;
+                
                 
             }
             
