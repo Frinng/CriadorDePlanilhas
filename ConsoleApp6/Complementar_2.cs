@@ -9,10 +9,10 @@ public class Complementar_2 {
     public static int N1 = 0;
     public static int numeroitem = 0;
     public static int quantidaAtual;
-    public static void LerPlanilhas()
-    {
+    public static string CaminhoDoEstoque; 
+    public static void LerPlanilhas() {
 
-        string CaminhoDoEstoque =  "C:\\Users\\aluno_iot\\Documents\\Pedro\\ProjetoTestePlanilha\\Simulacao Estoque.xlsx";
+        CaminhoDoEstoque =  "C:\\Users\\Pedro\\Documents\\My Games\\TesteInterdace\\PLanilhaSimuladoEstoque.xlsx";
         
         using (var LivroDeTrabalho = new XLWorkbook(CaminhoDoEstoque)) {
 
@@ -69,11 +69,70 @@ public class Complementar_2 {
         }
         
     }
-    
-    public static void AlterarDadosDaplanilha() {
-        if (Complementar.CaminhoCOmpleto != null) {
+
+    public static void ADICIONARITEM() {
+
+        string Numerostring;
+        int numer = 0;
+        int quantidade = 0;
+        
+        if (CaminhoDoEstoque == null) {
             
-            string CaminhoDaAlteração = Complementar.CaminhoCOmpleto;
+            FuncoesUteis.SistemaForaDOaR();
+            
+            return;
+        }
+
+        using (var LivroTrabalho = new XLWorkbook(CaminhoDoEstoque)) {
+
+            var Planilha1 = LivroTrabalho.Worksheet(1);
+
+            int ultimalinha = Planilha1.LastRowUsed().RowNumber() + 1;
+            int novoNumero = ultimalinha - 1;
+            
+            Console.WriteLine("Digite o nome do item: ");
+            string descricao = Console.ReadLine();
+            
+            Console.WriteLine($"Digite a quantidade de {descricao}: ");
+            Numerostring = Console.ReadLine();
+
+            if (int.TryParse(Numerostring, out numer)) {
+
+                quantidade = numer;
+
+            }
+            else {
+               
+                FuncoesUteis.DIGITEUMNUMEROINTEIRO();
+                
+            }
+            
+            Console.WriteLine("Digite a Marca/Modelo: ");
+            string Marca = Console.ReadLine();
+            
+            Console.WriteLine($"Digite onde o {descricao} sera armazenado: ");
+            string locali = Console.ReadLine();
+            
+            Planilha1.Cell(ultimalinha,1).Value = novoNumero;
+            Planilha1.Cell(ultimalinha, 2).Value = descricao;
+            Planilha1.Cell(ultimalinha, 3).Value = quantidade;
+            Planilha1.Cell(ultimalinha, 4).Value = Marca;
+            Planilha1.Cell(ultimalinha, 5).Value = locali;
+            
+            LivroTrabalho.Save();
+            
+        }
+        
+    }
+    public static void REMOVERUMALINHACOMPLETA() {
+        
+        
+        
+    }
+    public static void AlterarDadosDaplanilha() {
+        if (CaminhoDoEstoque != null) {
+            
+            string CaminhoDaAlteração = CaminhoDoEstoque;
 
             using (var LivroTrabalhokkkOloco = new XLWorkbook(CaminhoDaAlteração)) {
 
@@ -200,7 +259,7 @@ public class Complementar_2 {
             }
         }else {
               
-              FuncoesUteis.VOCENAOCADASTROUNADA();
+              
               
         }
     }

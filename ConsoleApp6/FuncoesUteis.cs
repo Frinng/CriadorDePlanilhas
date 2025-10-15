@@ -112,13 +112,12 @@ public class FuncoesUteis
 
     }
 
-    public static void VOCENAOCADASTROUNADA()
-    {
+    public static void SistemaForaDOaR() {
 
         Console.Clear();
 
         Console.WriteLine("-----------------------------------------------");
-        Console.WriteLine("|          Você não cadastrou nada            |");
+        Console.WriteLine("|             Sistema Fora Do Ar              |");
         Console.WriteLine("-----------------------------------------------");
 
         Console.WriteLine(" ");

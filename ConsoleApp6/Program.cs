@@ -35,7 +35,7 @@ public class program {
                     case 1:
                         Console.Clear();
 
-                        ProgramaCompleto.Completin();
+                        Complementar_2.ADICIONARITEM();
                         
                         FuncoesUteis.CLIQUEAQUIPARACONTINUAR();
                                 
