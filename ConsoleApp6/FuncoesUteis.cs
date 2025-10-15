@@ -104,5 +104,23 @@ public class FuncoesUteis {
             Console.ReadKey();
             
         }
+
+        public static void VOCENAOCADASTROUNADA() {
+            
+            Console.Clear();
+            
+            Console.WriteLine("-----------------------------------------------");
+            Console.WriteLine("|          Você não cadastrou nada            |");
+            Console.WriteLine("-----------------------------------------------");
+                    
+            Console.WriteLine(" ");
+                        
+            Console.WriteLine("-----------------------------------------------");
+            Console.WriteLine("|   Pressione qualquer tecla para continuar   |");
+            Console.WriteLine("-----------------------------------------------");
+
+            Console.ReadKey();
+            
+        }
     
 }

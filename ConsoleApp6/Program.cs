@@ -25,7 +25,8 @@ public class program {
             //opcoes
             Console.WriteLine("----------------------------------------------");
             Console.WriteLine("| 1-Adicionar um item                        |");
-            Console.WriteLine("| 2-Sair                                     |");
+            Console.WriteLine("| 2-Modificar planilha                       |");
+            Console.WriteLine("| 3-Sair                                     |");
             Console.WriteLine("----------------------------------------------");
             Escolhastring = Console.ReadLine();
         
@@ -40,6 +41,13 @@ public class program {
                                 
                         break;
                     case 2:
+                        
+                        Complementar_2.AlterarDadosDaplanilha();
+                        
+                        FuncoesUteis.CLIQUEAQUIPARACONTINUAR();
+                        
+                        break;
+                    case 3:
                                 
                         FuncoesUteis.SAINDODOSISTEMA();
         
