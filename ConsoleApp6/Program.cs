@@ -25,7 +25,8 @@ public class program {
             //opcoes
             Console.WriteLine("----------------------------------------------");
             Console.WriteLine("| 1-Adicionar um item                        |");
-            Console.WriteLine("| 2-Ver Planilha                             |");
+            Console.WriteLine("| 2-Remover um item                          |");
+            Console.WriteLine("| 4-Ver Planilha                             |");
             Console.WriteLine("| 3-Sair                                     |");
             Console.WriteLine("----------------------------------------------");
             Escolhastring = Console.ReadLine();
@@ -41,6 +42,13 @@ public class program {
                                 
                         break;
                     case 2:
+                        Console.Clear();
+                        
+                        Complementar_2.REMOVERUMALINHACOMPLETA();
+                        
+                        
+                        break;
+                    case 4:
                         
                         Complementar_2.LerPlanilhas();
                         

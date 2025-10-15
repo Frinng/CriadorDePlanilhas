@@ -12,7 +12,7 @@ public class Complementar_2 {
     public static string CaminhoDoEstoque; 
     public static void LerPlanilhas() {
 
-        CaminhoDoEstoque =  "C:\\Users\\Pedro\\Documents\\My Games\\TesteInterdace\\PLanilhaSimuladoEstoque.xlsx";
+        CaminhoDoEstoque = "C:\\Users\\Pedro\\Documents\\My Games\\TesteInterdace\\PLanilhaSimuladoEstoque.xlsx";
         
         using (var LivroDeTrabalho = new XLWorkbook(CaminhoDoEstoque)) {
 
@@ -49,7 +49,7 @@ public class Complementar_2 {
                 Console.WriteLine("-------------------------------------------------------------------------------");
 
                 Console.ReadKey();
-            }
+        }
         
     }
 
@@ -125,8 +125,53 @@ public class Complementar_2 {
         
     }
     public static void REMOVERUMALINHACOMPLETA() {
+        string numerostring;
+        int numero = 0;
+        int NumeroITemRemove = 0;
         
+        string CaminhoRemove = "C:\\Users\\Pedro\\Documents\\My Games\\TesteInterdace\\PLanilhaSimuladoEstoque.xlsx";
         
+        if (CaminhoRemove == null) {
+            
+            FuncoesUteis.SistemaForaDOaR();
+            
+            return;
+            
+        }
+
+        using (var BookDeTrampo = new XLWorkbook(CaminhoRemove)) {
+            
+            var Planilha2 = BookDeTrampo.Worksheet(1);
+            
+            Console.WriteLine("Digite o numero do item que você deseja remover: ");
+            numerostring = Console.ReadLine();
+
+            if (int.TryParse(numerostring, out numero)) {
+
+                NumeroITemRemove = numero;
+
+            }
+            else {
+                
+                FuncoesUteis.DIGITEUMNUMEROINTEIRO();
+                
+            }
+
+            var linheAchada = Planilha2.RowsUsed().Skip(1).FirstOrDefault(r => r.Cell(1).GetValue<int>() == NumeroITemRemove);
+
+            if (linheAchada == null) {
+                
+                FuncoesUteis.ITEMNAOENCONTRADO();
+                
+                return;
+                
+            }
+
+            linheAchada.Delete();
+            
+            BookDeTrampo.Save();
+            
+        }
         
     }
     public static void AlterarDadosDaplanilha() {
