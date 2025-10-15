@@ -112,7 +112,7 @@ public class FuncoesUteis {
             Console.WriteLine("-----------------------------------------------");
             Console.WriteLine("|          Você não cadastrou nada            |");
             Console.WriteLine("-----------------------------------------------");
-                    
+            
             Console.WriteLine(" ");
                         
             Console.WriteLine("-----------------------------------------------");
@@ -120,7 +120,6 @@ public class FuncoesUteis {
             Console.WriteLine("-----------------------------------------------");
 
             Console.ReadKey();
-            
         }
     
 }

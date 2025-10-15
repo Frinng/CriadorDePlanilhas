@@ -6,6 +6,12 @@ public class Complementar_2 {
 
     public static void AlterarDadosDaplanilha() {
 
+          
+
+    }
+
+    public static void LerPlanilhas() {
+        
         if (Complementar.CaminhoCOmpleto != null) {
          
             string CaminhoDaLeitura = Complementar.CaminhoCOmpleto;
@@ -14,9 +20,9 @@ public class Complementar_2 {
 
                 var Planilha = LivroDeTrabalho.Worksheet(1);
                 
-                Console.WriteLine("-----------------------------------------------");
-                Console.WriteLine("|                Estoque Atual                |");
-                Console.WriteLine("-----------------------------------------------");
+                Console.WriteLine("-------------------------------------------------------------------------------");
+                Console.WriteLine("|                                Estoque Atual                                |");
+                Console.WriteLine("-------------------------------------------------------------------------------");
                 
                 Console.WriteLine(" ");
                 
@@ -34,17 +40,24 @@ public class Complementar_2 {
                     string marca = linha.Cell(4).GetValue<string>();
                     string local = linha.Cell(5).GetValue<string>();
                     
-                    Console.WriteLine($"{item,-4} | {Descri, 20} | {marca,12} | {local}");
+                    Console.WriteLine($"|  {item,-4}  | {Descri, 20}  | {marca,12}  | {local}  |");
 
                 }
                 
+                Console.WriteLine(" ");
+                        
+                Console.WriteLine("-------------------------------------------------------------------------------");
+                Console.WriteLine("|                    Pressione qualquer tecla para continuar                  |");
+                Console.WriteLine("-------------------------------------------------------------------------------");
+
+                Console.ReadKey();
             }
             
         }else {
             
             FuncoesUteis.VOCENAOCADASTROUNADA();
             
-        }  
-
+        }
+        
     }
 }
