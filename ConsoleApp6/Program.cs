@@ -26,7 +26,8 @@ public class program {
             Console.WriteLine("----------------------------------------------");
             Console.WriteLine("| 1-Adicionar um item                        |");
             Console.WriteLine("| 2-Ver Planilha                             |");
-            Console.WriteLine("| 3-Sair                                     |");
+            Console.WriteLine("| 3-Alterar Dados da Planilha                |");
+            Console.WriteLine("| 4-Sair                                     |");
             Console.WriteLine("----------------------------------------------");
             Escolhastring = Console.ReadLine();
         
@@ -46,6 +47,8 @@ public class program {
                         
                         break;
                     case 3:
+                        break;
+                    case 4:
                                 
                         FuncoesUteis.SAINDODOSISTEMA();
         
