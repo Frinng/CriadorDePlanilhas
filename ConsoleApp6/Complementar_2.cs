@@ -52,24 +52,7 @@ public class Complementar_2 {
         }
         
     }
-
-    public static void NumeroqueVoceDesejaAlterar() {
-        
-        Console.WriteLine("Digite o numero do item que voce deseja alterar: ");
-        NumeroItem = Console.ReadLine();
-        
-        if (int.TryParse(NumeroItem, out N1)) {
-
-            numeroitem = N1;
-
-        }else {
-                    
-            FuncoesUteis.DIGITEUMNUMEROINTEIRO();
-                    
-        }
-        
-    }
-
+    
     public static void ADICIONARITEM() {
 
         string Numerostring;
@@ -124,6 +107,7 @@ public class Complementar_2 {
         }
         
     }
+    
     public static void REMOVERUMALINHACOMPLETA() {
         string numerostring;
         int numero = 0;
@@ -174,138 +158,175 @@ public class Complementar_2 {
         }
         
     }
-    public static void AlterarDadosDaplanilha() {
-        if (CaminhoDoEstoque != null) {
+
+    public static void AdicionarProduto() {
+        
+        int linhaencontrada = -1;
+        string nome;
+        string adicionarstring;
+        int adicionar = 0;
+        
+        string CaminhoAdicionarProduto = "C:\\Users\\Pedro\\Documents\\My Games\\TesteInterdace\\PLanilhaSimuladoEstoque.xlsx";
+        
+        if (CaminhoAdicionarProduto == null) {
             
-            string CaminhoDaAlteração = CaminhoDoEstoque;
+            FuncoesUteis.SistemaForaDOaR();
+            
+            return;
+        }
 
-            using (var LivroTrabalhokkkOloco = new XLWorkbook(CaminhoDaAlteração)) {
+        using (var TrabalhoLivro = new XLWorkbook(CaminhoAdicionarProduto)) {
 
-                var Planilha = LivroTrabalhokkkOloco.Worksheet(1);
+            var PlanilhaAdicionar = TrabalhoLivro.Worksheet(1);
+            
+            Console.WriteLine("Digite o numero do item que voce deseja adicionar: ");
+            NumeroItem = Console.ReadLine();
+        
+            if (int.TryParse(NumeroItem, out N1)) {
 
-                int linhaencontrada = -1;
-                string nome;
-                string adicionarstring;
-                int adicionar = 0;
-                string retirarstring;
-                int retirar = 0;
-                string Opcaostring;
-                int Opcao = 0;
+                numeroitem = N1;
 
-                NumeroqueVoceDesejaAlterar();
+            }else {
+                    
+                FuncoesUteis.DIGITEUMNUMEROINTEIRO();
+                    
+            }
+        
+            foreach (var linha in PlanilhaAdicionar.RowsUsed().Skip(1)) {
+                if (linha.Cell(1).GetValue<int>() == numeroitem) {
 
-                foreach (var linha in Planilha.RowsUsed().Skip(1)) {
-                    if (linha.Cell(1).GetValue<int>() == numeroitem) {
-
-                        linhaencontrada = linha.RowNumber();
+                    linhaencontrada = linha.RowNumber();
                         
-                        break;
+                    break;
 
-                    }
-                }
-
-                if (linhaencontrada == -1) {
-
-                    FuncoesUteis.ITEMNAOENCONTRADO();
-                    
-                    return;
-                }
-
-                var celulaquantida = Planilha.Cell(linhaencontrada, 3);
-                quantidaAtual = celulaquantida.GetValue<int>();
-                nome = Planilha.Cell(linhaencontrada, 2).GetValue<string>();
-                
-                Console.WriteLine($"Quantidade Atual de {nome}: {quantidaAtual}");
-                
-                Console.WriteLine(" ");
-                
-                Console.WriteLine("----------------------------------------------");
-                Console.WriteLine("|                você deseja                 |");
-                Console.WriteLine("----------------------------------------------");
-                
-                Console.WriteLine("----------------------------------------------");
-                Console.WriteLine("| 1-Adicionar                                |");
-                Console.WriteLine("| 2-Retirar                                  |");
-                Console.WriteLine("----------------------------------------------");
-                Opcaostring =Console.ReadLine();
-
-                if (int.TryParse(Opcaostring, out Opcao)) {
-
-                    switch (Opcao) {
-                        
-                        case 1:
-                            Console.Clear();
-                            
-                            Console.WriteLine("Digite quanto voce deseja adicionar: ");
-                            adicionarstring = Console.ReadLine();
-
-                            if (int.TryParse(adicionarstring, out adicionar)) {
-
-                                quantidaAtual += adicionar;
-                                
-                                celulaquantida.Value = quantidaAtual;
-                                    
-                                LivroTrabalhokkkOloco.Save();
-                            }
-                            else {
-                                
-                                FuncoesUteis.DIGITEUMNUMEROINTEIRO();
-                                
-                            }
-                            
-                            break;
-                        case 2:
-                            Console.Clear();
-                            Console.WriteLine("Digite quanto voce deseja retirar: ");
-                            retirarstring = Console.ReadLine();
-
-                            if (int.TryParse(retirarstring, out retirar)) {
-
-                                if (quantidaAtual >= retirar) {
-                                    
-                                    quantidaAtual -= retirar;
-                                    
-                                    celulaquantida.Value = quantidaAtual;
-                                    
-                                    LivroTrabalhokkkOloco.Save();
-
-                                    Console.WriteLine("\nAlteração salva com sucesso!");
-                                    
-                                }else {
-                                    
-                                     
-                                    Console.WriteLine("------------------------------------------------------------------");
-                                    Console.WriteLine("|    Quantidade já está em zero, não é possível retirar mais     |");
-                                    Console.WriteLine("------------------------------------------------------------------");
-                                        
-                                }
-
-                            }
-                            else {
-                                
-                                FuncoesUteis.DIGITEUMNUMEROINTEIRO();
-                                
-                            }
-                            
-                            break;
-                        default:
-                            
-                            FuncoesUteis.DIGITEUMAOPCAOVALIDA();
-                            
-                            break;
-                        
-                    }
-                    
-                }else {
-                    
-                    FuncoesUteis.DIGITEUMAOPCAOVALIDA();
-                    
                 }
             }
-        }else {
-              
-              
-              
+            if (linhaencontrada == -1) {
+
+                FuncoesUteis.ITEMNAOENCONTRADO();
+                    
+                return;
+            }
+            
+            var celulaquantida = PlanilhaAdicionar.Cell(linhaencontrada, 3);
+            quantidaAtual = celulaquantida.GetValue<int>();
+            nome = PlanilhaAdicionar.Cell(linhaencontrada, 2).GetValue<string>();
+                
+            Console.WriteLine($"Quantidade Atual de {nome}: {quantidaAtual}");
+                
+            Console.WriteLine(" ");
+            
+            Console.WriteLine("Digite quanto voce deseja adicionar: ");
+            adicionarstring = Console.ReadLine();
+
+            if (int.TryParse(adicionarstring, out adicionar)) {
+
+                quantidaAtual += adicionar;
+                                
+                celulaquantida.Value = quantidaAtual;
+                                    
+                TrabalhoLivro.Save();
+            }
+            else {
+                                
+                FuncoesUteis.DIGITEUMNUMEROINTEIRO();
+                                
+            }
+        }
+        
+    }
+
+    public static void RemoverProduto() {
+        
+        int linhaencontrada = -1;
+        string nome;
+        string retirarstring;
+        string NumerItem;
+        int Numer1 = 0;
+        int numerItem = 0;
+        int QuantidAtual = 0;
+        int retirar = 0;
+        
+        
+        string CaminhoRemoverProduto = "C:\\Users\\Pedro\\Documents\\My Games\\TesteInterdace\\PLanilhaSimuladoEstoque.xlsx";
+        
+        if (CaminhoRemoverProduto == null) {
+            
+            FuncoesUteis.SistemaForaDOaR();
+            
+            return;
+        }
+
+        using (var TrabalhoLivroRemover = new XLWorkbook(CaminhoRemoverProduto)) {
+
+            var PlanilhaRemover = TrabalhoLivroRemover.Worksheet(1);
+            
+            Console.WriteLine("Digite o numero do item que voce deseja Remover: ");
+            NumerItem = Console.ReadLine();
+        
+            if (int.TryParse(NumerItem, out Numer1)) {
+
+                numerItem = Numer1;
+
+            }else {
+                    
+                FuncoesUteis.DIGITEUMNUMEROINTEIRO();
+                    
+            }
+            foreach (var linha in PlanilhaRemover.RowsUsed().Skip(1)) {
+                if (linha.Cell(1).GetValue<int>() == numerItem) {
+
+                    linhaencontrada = linha.RowNumber();
+                        
+                    break;
+
+                }
+            }
+            if (linhaencontrada == -1) {
+
+                FuncoesUteis.ITEMNAOENCONTRADO();
+                    
+                return;
+            }
+            var celulaquantida = PlanilhaRemover.Cell(linhaencontrada, 3);
+            QuantidAtual = celulaquantida.GetValue<int>();
+            nome = PlanilhaRemover.Cell(linhaencontrada, 2).GetValue<string>();
+            
+            Console.WriteLine($"Quantidade Atual de {nome}: {QuantidAtual}");
+                
+            Console.WriteLine(" ");
+            
+            Console.WriteLine("Digite quanto voce deseja retirar: ");
+            retirarstring = Console.ReadLine();
+
+            if (int.TryParse(retirarstring, out retirar)) {
+
+                if (QuantidAtual >= retirar) {
+                                    
+                    QuantidAtual -= retirar;
+                                    
+                    celulaquantida.Value = QuantidAtual;
+                                    
+                    TrabalhoLivroRemover.Save();
+
+                    Console.WriteLine("\nAlteração salva com sucesso!");
+                                    
+                }else {
+                                    
+                                     
+                    Console.WriteLine("------------------------------------------------------------------");
+                    Console.WriteLine("|    Quantidade já está em zero, não é possível retirar mais     |");
+                    Console.WriteLine("------------------------------------------------------------------");
+                                        
+                }
+
+            }
+            else {
+                                
+                FuncoesUteis.DIGITEUMNUMEROINTEIRO();
+                                
+            }
+            
         }
     }
 }

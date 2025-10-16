@@ -26,8 +26,10 @@ public class program {
             Console.WriteLine("----------------------------------------------");
             Console.WriteLine("| 1-Adicionar um item                        |");
             Console.WriteLine("| 2-Remover um item                          |");
-            Console.WriteLine("| 4-Ver Planilha                             |");
-            Console.WriteLine("| 3-Sair                                     |");
+            Console.WriteLine("| 3-Adicionar Produto                        |");
+            Console.WriteLine("| 4-Remover Produto                          |");
+            Console.WriteLine("| 5-Ver Planilha                             |");
+            Console.WriteLine("| 6-Sair                                     |");
             Console.WriteLine("----------------------------------------------");
             Escolhastring = Console.ReadLine();
         
@@ -46,14 +48,32 @@ public class program {
                         
                         Complementar_2.REMOVERUMALINHACOMPLETA();
                         
+                        FuncoesUteis.CLIQUEAQUIPARACONTINUAR();
+                        
+                        break;
+                    case 3:
+                        Console.Clear();
+                        
+                        Complementar_2.AdicionarProduto();
+                        
+                        FuncoesUteis.CLIQUEAQUIPARACONTINUAR();
                         
                         break;
                     case 4:
+                        Console.Clear();
+                        
+                        Complementar_2.RemoverProduto();
+                        
+                        FuncoesUteis.CLIQUEAQUIPARACONTINUAR();
+                        
+                        break;
+                    case 5:
+                        Console.Clear();
                         
                         Complementar_2.LerPlanilhas();
                         
                         break;
-                    case 3:
+                    case 6:
                                 
                         FuncoesUteis.SAINDODOSISTEMA();
         

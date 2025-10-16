@@ -137,11 +137,5 @@ public class FuncoesUteis
         Console.WriteLine("-----------------------------------------------");
 
         Console.WriteLine(" ");
-
-        Console.WriteLine("-----------------------------------------------");
-        Console.WriteLine("|   Pressione qualquer tecla para continuar   |");
-        Console.WriteLine("-----------------------------------------------");
-
-        Console.ReadKey();
     }
 }
