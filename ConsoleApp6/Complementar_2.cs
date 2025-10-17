@@ -38,7 +38,7 @@ public class Complementar_2 {
                     string marca = linha.Cell(4).GetValue<string>();
                     string local = linha.Cell(5).GetValue<string>();
                     
-                    Console.WriteLine($"|  {item,-4}  | {Descri, 20}  |  {quantidade}  |  {marca,12}  | {local}  |");
+                    Console.WriteLine($"| {item,-4}|  {Descri, 20}   |   {quantidade}   |  {marca,12}  | {local}  |");
 
                 }
                 
