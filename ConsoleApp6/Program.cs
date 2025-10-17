@@ -64,7 +64,6 @@ public class program {
            }
         }
     }
-
     
     static bool FazerLogin(string CaminhoDoBanco) {
         Console.Clear();
