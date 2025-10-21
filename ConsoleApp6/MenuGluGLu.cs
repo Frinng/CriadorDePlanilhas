@@ -23,6 +23,7 @@ public class MenuGluGLu {
             Console.WriteLine("| 4 - Remover Produto                        |");
             Console.WriteLine("| 5 - Ver Planilha                           |");
             Console.WriteLine("| 6 - Sair                                   |");
+            Console.WriteLine("| 7 - Sistema de Empréstimo de Ferramentas   |");
             Console.WriteLine("----------------------------------------------");
             Escolhastring = Console.ReadLine();
 
@@ -68,6 +69,10 @@ public class MenuGluGLu {
                         FuncoesUteis.SAINDODOSISTEMA();
                         
                         Continuar = false;
+                        break;
+                    case 7:
+                        Console.Clear();
+                        SistemaEmprestimoIntegrado.MenuEmprestimo();
                         break;
                     default:
                         
